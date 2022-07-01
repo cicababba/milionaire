@@ -1,9 +1,6 @@
 package entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "question")
 public class Question {
 
@@ -25,7 +23,7 @@ public class Question {
 
         private int score;
 
-        @OneToMany(mappedBy = "question")
+        @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
         private List<Answer> answers;
 
         @ManyToMany(mappedBy = "questions")
